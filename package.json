@@ -1,0 +1,16 @@
+{
+  "name": "discord-bot",
+  "version": "1.0.0",
+  "description": "A simple discord bot.",
+  "main": "src/main.js",
+  "type": "module",
+  "scripts": {
+    "start": "echo start"
+  },
+  "author": "Malte Svensson",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.15.2",
+    "dotenv": "^16.4.5"
+  }
+}
