@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import { Client, EmbedBuilder, IntentsBitField } from 'discord.js'
+import { Client, EmbedBuilder, IntentsBitField, ActivityType } from 'discord.js'
 
 const bot = new Client({
     intents: [
@@ -11,6 +11,13 @@ const bot = new Client({
 })
 
 bot.on('ready', (b) => {
+    console.clear()
+
+    bot.user.setActivity({
+        name: 'Youtube.com',
+        type: ActivityType.Watching
+    })
+
     console.log(`${b.user.tag} is online.`)
 })
 
