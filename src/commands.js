@@ -1,6 +1,6 @@
 import 'dotenv/config'
 import { REST, Routes, ApplicationCommandOptionType } from 'discord.js'
-import { greetMessage, playMessage } from '../templates/messages.js'
+import { greetMessage, playMessage, skolkMessage } from '../templates/messages.js'
 import { 
     alexanderID, 
     antonID, 
@@ -34,6 +34,10 @@ const commands = [
                     {
                         name: 'greet',
                         value: greetMessage
+                    },
+                    {
+                        name: 'skolk',
+                        value: skolkMessage
                     }
                 ]
             },
