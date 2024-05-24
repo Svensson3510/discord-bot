@@ -1,12 +1,12 @@
 import 'dotenv/config'
-import { Client, EmbedBuilder, IntentsBitField, ActivityType } from 'discord.js'
+import { Client, IntentsBitField, ActivityType, EmbedBuilder } from 'discord.js'
 
-const bot = new Client({
+export const bot = new Client({
     intents: [
         IntentsBitField.Flags.Guilds,
         IntentsBitField.Flags.GuildMembers,
         IntentsBitField.Flags.GuildMessages,
-        IntentsBitField.Flags.MessageContent
+        IntentsBitField.Flags.MessageContent,
     ]
 })
 
@@ -24,20 +24,7 @@ bot.on('ready', (b) => {
 bot.on('interactionCreate', (interaction) => {
     if (!interaction.isChatInputCommand()) return
 
-    if (interaction.commandName == 'test') {
-        interaction.reply('Test')
-    }
-
-    if (interaction.commandName == 'message') {
-        interaction.reply(`<@${interaction.options.get('member').value}> ${interaction.options.get('template').value}`)
-    }
-})
-
-bot.on('messageCreate', (message) => {
-    if (message.author.bot) {
-        return
-    }
-    if (message.content == 'bot') {
+    if (interaction.commandName == 'bot') {
         const embed = new EmbedBuilder()
             .setColor('Blue')
             // .setAuthor({ 
@@ -50,7 +37,7 @@ bot.on('messageCreate', (message) => {
             .addFields(
                 { name: '\u200A', value: '\u200A'},
                 { name: '\u200A', value: '\u200A'},
-                { name: 'Commands', value: '/test\n/message', inline: true },
+                { name: 'Commands', value: '/bot\n/test\n/message\n/server', inline: true },
                 { name: '\u200A', value: '\u200A', inline: true },
                 { name: 'Additional', value: 'This bot is under construction.\nPlease feel free to suggest ideas.', inline: true },
                 { name: '\u200A', value: '\u200A'}
@@ -62,7 +49,41 @@ bot.on('messageCreate', (message) => {
                 // iconURL: 'https://cdn.discordapp.com/avatars/885419091148550144/3857f7777bf9eef0673e40fb850d329a.webp?size=80'
             // })
         
-        message.channel.send({ embeds: [embed] })
+        interaction.reply({ embeds: [embed] })
+    }
+
+    if (interaction.commandName == 'test') {
+        interaction.reply('Test.')
+    }
+
+    if (interaction.commandName == 'message') {
+        interaction.reply(`<@${interaction.options.get('member').value}> ${interaction.options.get('template').value}`)
+    }
+
+    if (interaction.commandName == 'server') {
+        const embed = new EmbedBuilder()
+            .setColor('Orange')
+            .setTitle('Server info')
+            .setDescription('A server for the Founding Fathers of Albania and everyone in between.')
+            .setFields(
+                { name: '\u200A', value: '\u200A'},
+                { name: 'Statistics', value: `
+
+Member count: ${interaction.guild.memberCount}
+Members with Nitro: ${interaction.guild.premiumSubscriptionCount}
+Nsfw level: ${interaction.guild.nsfwLevel}
+
+                `},
+                { name: '\u200A', value: '\u200A'},
+                { name: 'Date of creation', value: `
+                
+${interaction.guild.createdAt}
+
+                `},
+                { name: '\u200A', value: '\u200A'}
+            )
+        
+        interaction.reply({ embeds: [embed] })
     }
 })
 
