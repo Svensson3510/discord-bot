@@ -83,7 +83,7 @@ bot.on('interactionCreate', async (interaction) => {
                 { name: '\u200A', value: '\u200A' },
                 { name: 'Roles', value: interaction.guild.roles.cache.toJSON().join(', ') },
                 { name: '\u200A', value: '\u200A' },
-                { name: 'Boosters', value: interaction.guild.roles.cache.get('1174684116889911396').members.toJSON().join(', ')},
+                // { name: 'Boosters', value: interaction.guild.roles.cache.get('1174684116889911396').members.toJSON().join(', ')},
                 { name: '\u200A', value: '\u200A' },
                 { name: 'Date of creation', value: `
                 
